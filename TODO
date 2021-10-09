@@ -1,0 +1,13 @@
+
+write a simple application to read in code word file and quiz.
+
+ideas:
+
+up to 5 before random word (so if third one selected, it should just be two)
+up to 5 after random word
+
+one at a time until mistake
+
+etc
+
+

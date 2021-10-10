@@ -7,7 +7,7 @@ Shoe
 Cow
 Hive
 Ape
-Wood
+Woods
 Tide
 Tin
 Team
@@ -93,8 +93,8 @@ Piano
 Bomb
 Bear
 Bell
-Bag
 Bush
+Bag
 Beef
 Pipe
 Daisies

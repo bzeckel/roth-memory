@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 
 def correctAnswer(words, ir)
-   return words[-2..-1] if ir == words.length
-   return words[0..1] if ir == 1
+   return words[-2..-1] if ir == words.length-1
+   return words[0..1] if ir == 0
    return words[(ir-1)..(ir+1)]
 end
 

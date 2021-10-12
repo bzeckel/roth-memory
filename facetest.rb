@@ -2,7 +2,7 @@
 
 require 'rmagick'
 
-def showRandom(files)
+def showRandom(files, fnames, lnames)
   filename = files[rand(files.length)]
   images = Magick::Image.read(filename)
   image = images[0]
@@ -12,12 +12,15 @@ def showRandom(files)
   text.pointsize = 52
   text.gravity = Magick::NorthGravity
 
-  text.annotate(image, 0,0,0,0, "show name here") {
+  name = fnames[rand(fnames.length)] + " " + lnames[rand(lnames.length)]
+  text.annotate(image, 0,0,0,0, name) {
      self.fill = 'darkred'
   }
   image.display
 end
 
-files = Dir.glob("./faces/*.jpg")
+fnames = IO.readlines("fnames.txt").map { |x| x.chop }
+lnames = IO.readlines("lnames.txt").map { |x| x.chop }
+facefiles = Dir.glob("./faces/*.jpg")
 
-5.times { showRandom(files) }
+5.times { showRandom(facefiles, fnames, lnames) }

@@ -13,3 +13,6 @@ etc
 
 use https://thispersondoesnotexist.com/ to create tool for testing face memory
 alternative: https://github.com/NVlabs/ffhq-dataset
+
+look into similar of https://github.com/hilarysk/string_to_ipa to test word<->number system
+handling hard g vs soft g , etc

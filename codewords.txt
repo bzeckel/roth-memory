@@ -1,100 +1,101 @@
-Hat
-Hen
-Ham
-Hare
-Hill
-Shoe
-Cow
-Hive
-Ape
-Woods
-Tide
-Tin
-Team
-Tire
-Hotel
-Dish
-Dog
-Dove
-Tub
-Nose
-Window
-Nun
-Gnome
-Snare
-Nail
-Hinge
-Ink
-Knife
-Knob
-Moose
-Mud
-Moon
-Mummy
-Hammer
-Mule
-Match
-Hammock
-Muff
-Mop
-Rose
-Rat
-Rain
-Ram
-Warrior
-Rail
-Roach
-Rake
-Roof
-Rope
-Lace
-Light
-Lion
-Lime
-Lawyer
-Lily
-Lodge
-Lake
-Loaf
-Lap
-Cheese
-Sheet
-Chain
-Jam
-Chair
-Jail
-Judge
-Check
-Chief
-Ship
-Goose
-Kite
-Can
-Comb
-Car
-Coal
-Cage
-Cake
-Cuff
-Cab
-Vase
-Foot
-Fan
-Foam
-Fire
-File
-Fish
-Fig
-Fife
-Fob
-Bus
-Boat
-Piano
-Bomb
-Bear
-Bell
-Bush
-Bag
-Beef
-Pipe
-Daisies
+1   Hat
+2   Hen
+3   Ham
+4   Hare
+5   Hill
+6   Shoe
+7   Cow
+8   Hive
+9   Ape
+10  Woods
+11  Tide
+12  Tin
+13  Team
+14  Tire
+15  Hotel
+16  Dish
+17  Dog
+18  Dove
+19  Tub
+20  Nose
+21  Window
+22  Nun
+23  Gnome
+24  Snare
+25  Nail
+26  Hinge
+27  Ink
+28  Knife
+29  Knob
+30  Moose
+31  Mud
+32  Moon
+33  Mummy
+34  Hammer
+35  Mule
+36  Match
+37  Hammock
+38  Muff
+39  Mop
+40  Rose
+41  Rat
+42  Rain
+43  Ram
+44  Warrior
+45  Rail
+46  Roach
+47  Rake
+48  Roof
+49  Rope
+50  Lace
+51  Light
+52  Lion
+53  Lime
+54  Lawyer
+55  Lily
+56  Lodge
+57  Lake
+58  Loaf
+59  Lap
+60  Cheese
+61  Sheet
+62  Chain
+63  Jam
+64  Chair
+65  Jail
+66  Judge
+67  Check
+68  Chief
+69  Ship
+70  Goose
+71  Kite
+72  Can
+73  Comb
+74  Car
+75  Coal
+76  Cage
+77  Cake
+78  Cuff
+79  Cab
+80  Vase
+81  Foot
+82  Fan
+83  Foam
+84  Fire
+85  File
+86  Fish
+87  Fig
+88  Fife
+89  Fob
+90  Bus
+91  Boat
+92  Piano
+93  Bomb
+94  Bear
+95  Bell
+96  Bush
+97  Bag
+98  Beef
+99  Pipe
+100 Daisies
+6 Age

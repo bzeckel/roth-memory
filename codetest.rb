@@ -19,6 +19,6 @@ end
 
 
 filename = "codewords.txt"
-words = IO.readlines(filename).map { |x| x.chop }
+words = IO.readlines(filename).first(100).map { |x| x.chop.split(" ")[1] }
 puts "loaded #{words.length} words from #{filename}"
 3.times do singleTest(words) end

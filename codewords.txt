@@ -1,5 +1,5 @@
-1   Hat
-2   Hen
+1   Hat             # we can end lines with a comment 
+2   Hen             # first hundred are the code words summarized on page 166
 3   Ham
 4   Hare
 5   Hill
@@ -98,7 +98,10 @@
 98  Beef
 99  Pipe
 100 Daisies
-6 age
-7 gay 
+6 age            # page 161 , words containing with soft G
 46 rage
 46 rouge
+7 gay            # page 161, words containing hard G
+7 egg
+27 nag
+741 guard

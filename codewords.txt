@@ -99,9 +99,17 @@
 99  Pipe
 100 Daisies
 6 age            # page 161 , words containing with soft G
-46 rage
+46 rage          # I omit here those already in 100 codewords above
 46 rouge
 7 gay            # page 161, words containing hard G
 7 egg
 27 nag
 741 guard
+36 much          # page 161, words containing soft Ch
+457 railing      # page 162 letters and sounds use occasionally, tricky
+987 paving
+687 shaving
+697 shipping
+7 ache
+48 rough
+82 phone

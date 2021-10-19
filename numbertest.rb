@@ -15,7 +15,9 @@ def lookup(c)
      when "r","ɝ" then "4" 
      when "l","ɫ" then "5"
      # ʃ like sh in fish
-     when "ʃ",$vpa,$vlpa then "6" 
+     # ʒ kind of zj sound is found in rouge/abrasion/garage according to CMU , 
+     #   a little iffy for me vs z sound which would be equal to 0
+     when "ʃ",$vpa,$vlpa,"ʒ" then "6" 
      # k or hard g
      when "k","g" then "7"
      when "v","f" then "8"

@@ -28,11 +28,15 @@ end
 def ipa_to_i(wi)
    r = ""
    0.upto(wi.length-1) do |i|
-       puts "#{i}: #{wi[i]} -> #{lookup(wi[i])}"
+       #puts "#{i}: #{wi[i]} -> #{lookup(wi[i])}"
        r += lookup(wi[i])
    end
 
    return r
+end
+
+def arrowif(b)
+  return b ?  " <----" : ""
 end
 
 def process(w,i)
@@ -41,11 +45,13 @@ def process(w,i)
   wip.gsub!("dʒ",$vpa) 
   wip.gsub!("tʃ",$vlpa) 
   vi = ipa_to_i(wip)
-  puts "#{i+1} #{w} #{wi} #{wip} #{vi}" if (i+1) != vi.to_i
+  mismatch = i != vi.to_i
+  puts "#{i} #{w} #{wi} #{wip} #{vi}#{arrowif(mismatch)}" if mismatch
 end
 
 filename = "codewords.txt"
 words = IO.readlines(filename).each_with_index do |input,i|
-  process(input.chop,i)
+  i,word = input.chop.split(" ")
+  process(word,i.to_i)
 end
 

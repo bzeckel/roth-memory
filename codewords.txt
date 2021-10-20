@@ -215,7 +215,7 @@
 
 138 White muff
 165 Hot jail
-253 New jam
+263 New jam
 292 Win piano
 343 Aim ram
 374 My car
@@ -226,7 +226,7 @@
 618 Wash dove
 666 Huge judge
 738 Gay muff
-799 Weak judge
+799 Weak pipe
 829 Heavy knob
 839 Wave mop
 935 Wipe mule

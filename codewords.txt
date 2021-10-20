@@ -174,4 +174,79 @@
 795 Cow Bell
 994 Ape Bear
 
+#
+# helper words on pg 169/170
+#
+
+1 Hot
+1 Wet
+1 White
+2 New 
+2 Win
+2 Own
+3 My 
+3 Aim
+3 Hem
+4 Hairy 
+4 Wire
+4 Hire
+5 Yellow 
+5 Oily 
+5 Wheel 
+6 Ashy 
+6 Huge 
+6 Wash
+7 Gay 
+7 Weak 
+7 Hack
+8 Heavy 
+8 Few 
+8 Wave
+9 Happy 
+9 Buy 
+9 Wipe 
+10 Dizzy 
+10 Hideous 
+10 Dose
+
+# 
+# Some illustrations on page 170
+#
+
+138 White muff
+165 Hot jail
+253 New jam
+292 Win piano
+343 Aim ram
+374 My car
+441 Hairy rat
+476 Wire cage
+544 Yellow warrior
+562 Oil chain
+618 Wash dove
+666 Huge judge
+738 Gay muff
+799 Weak judge
+829 Heavy knob
+839 Wave mop
+935 Wipe mule
+973 Buy comb
+1018 Dizzy dove
+1079 Hideous cab
+
+# 
+# pg 171 word combinations
+#
+
+3293 Moon beam
+4164 Red chair
+5235 Lean mule
+6295 Shiny bell
+7467 Gray check
+9117 Bad dog
+
+# 
+# pg 171 - helpful list
+#
+
 

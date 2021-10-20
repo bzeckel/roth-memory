@@ -112,8 +112,8 @@ end
 
 def test_user_int_to_word
   used = []
-  3.times do
-     clearScreen
+  3.times do |i|
+     clearScreen if i > 0
      r = no_repeat_random(used)
      puts "enter any word for #{r}" 
      while(ans = gets.chop)
@@ -129,4 +129,5 @@ def test_user_int_to_word
 end
 
 testWords
+puts
 test_user_int_to_word

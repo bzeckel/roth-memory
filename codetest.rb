@@ -19,6 +19,16 @@ end
 
 
 filename = "codewords.txt"
-words = IO.readlines(filename).first(100).map { |x| x.chop.split(" ")[1] }
-puts "loaded #{words.length} words from #{filename}"
+words = []
+IO.readlines(filename).each do |input|
+  clean = input.gsub(/\#.*$/,"").strip
+  next if clean == ""
+  i,word = clean.split(' ',2)
+  words << word
+  raise "expected code value of #{word} to be #{words.length} and it was instead #{i.to_i}" unless i.to_i == words.length
+  break if words.length == 100
+end
+
+
+puts "loaded first #{words.length} words from #{filename}"
 3.times do singleTest(words) end

@@ -58,8 +58,10 @@ def process(w,i)
 end
 
 filename = "codewords.txt"
-words = IO.readlines(filename).each_with_index do |input,i|
-  i,word = input.chop.split(" ")
+words = IO.readlines(filename).each do |input|
+  clean = input.gsub(/\#.*$/,"").strip
+  next if clean == ""
+  i,word = clean.split(' ',2)
   process(word,i.to_i)
 end
 

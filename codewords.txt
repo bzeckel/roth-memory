@@ -1,5 +1,10 @@
-1   Hat             # we can end lines with a comment 
-2   Hen             # first hundred are the code words summarized on page 166
+
+#
+# first hundred are the code words summarized on page 166
+# 
+
+1   Hat
+2   Hen             
 3   Ham
 4   Hare
 5   Hill
@@ -98,18 +103,75 @@
 98  Beef
 99  Pipe
 100 Daisies
-6 age            # page 161 , words containing with soft G
-46 rage          # I omit here those already in 100 codewords above
+
+#
+# examples for later in the text
+# I omit here those already in 100 codewords above
+#
+# page 161 , words containing with soft G
+#
+
+6 age            
+46 rage          
 46 rouge
-7 gay            # page 161, words containing hard G
+
+#
+# page 161, words containing hard G
+#
+
+7 gay            
 7 egg
 27 nag
 741 guard
-36 much          # page 161, words containing soft Ch
-457 railing      # page 162 letters and sounds use occasionally, tricky
+
+#
+# page 161, words containing soft Ch
+#
+
+36 much          
+
+#
+# page 162 letters and sounds use occasionally, tricky
+#
+
+457 railing      
 987 paving
 687 shaving
 697 shipping
 7 ache
 48 rough
 82 phone
+
+# 
+# pg 163
+#
+
+914 Butter
+33 Mamma
+90 Boss
+4 Arrow
+
+#
+# pg 164
+#
+
+1 Tie
+1 Hood
+1 Hut
+1 Head
+1 Dough
+1 Toe
+1 Wet
+
+#
+# pg 168
+#
+
+3964 Mop Chair
+3251 Moon Light
+9067 Bus Check
+1239 Tin Mop
+795 Cow Bell
+994 Ape Bear
+
+

@@ -47,21 +47,86 @@ def arrowif(b)
   return b ?  " <----" : ""
 end
 
-def process(w,i)
-  wi = w.split.map { |x| x.to_ipa }.join
+class WordNotFoundException < StandardError
+  def initialize(msg="This is a custom exception", exception_type="custom")
+    @exception_type = exception_type
+    super(msg)
+  end
+end
+
+def ipa(w)
+   r = w.to_ipa
+   raise WordNotFoundException.new("string_to_ipa doesn't appear to recognize #{w}") if(r==w)
+   return r
+end
+
+def word_value_internal(w)
+  wi = w.split.map { |x| ipa(x) }.join
   wip = wi.gsub(/[ˈwhyjæɔɑəɛʊɪʌaeiou]/,"")
   wip.gsub!("dʒ",$vpa) 
   wip.gsub!("tʃ",$vlpa) 
   vi = ipa_to_i(wip)
+  return vi, wi, wip
+end
+
+def word_value(w)
+  vi, wi, wip = word_value_internal(w)
+  return vi
+end
+
+def process(w,i)
+  vi,wi,wip = word_value_internal(w)
   mismatch = i != vi.to_i
   puts "#{i} #{w} #{wi} #{wip} #{vi}#{arrowif(mismatch)}" if mismatch
 end
 
-filename = "codewords.txt"
-words = IO.readlines(filename).each do |input|
-  clean = input.gsub(/\#.*$/,"").strip
-  next if clean == ""
-  i,word = clean.split(' ',2)
-  process(word,i.to_i)
+def testWords
+  filename = "codewords.txt"
+  words = IO.readlines(filename).each do |input|
+    clean = input.gsub(/\#.*$/,"").strip
+    next if clean == ""
+    i,word = clean.split(' ',2)
+    process(word,i.to_i)
+  end
 end
 
+def no_repeat_random(used)
+   n = 100
+
+   raise "Used is full in no_repeat_random" if used.length == n
+
+   r = -1 
+   loop do 
+       r = rand(n) + 1
+       break if used.include?(r) == false
+   end 
+
+   used << r
+
+   return r
+end
+
+def clearScreen
+  puts "\e[H\e[2J"
+end
+
+def test_user_int_to_word
+  used = []
+  3.times do
+     clearScreen
+     r = no_repeat_random(used)
+     puts "enter any word for #{r}" 
+     while(ans = gets.chop)
+       begin
+         wv = word_value(ans)
+         break if wv.to_i == r
+         puts "wrong. #{ans} has word value of #{wv} not #{r}"
+       rescue WordNotFoundException => wnfe
+         puts wnfe
+       end
+     end
+  end
+end
+
+testWords
+test_user_int_to_word

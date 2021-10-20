@@ -48,7 +48,7 @@ def arrowif(b)
 end
 
 def process(w,i)
-  wi = w.to_ipa
+  wi = w.split.map { |x| x.to_ipa }.join
   wip = wi.gsub(/[ˈwhyjæɔɑəɛʊɪʌaeiou]/,"")
   wip.gsub!("dʒ",$vpa) 
   wip.gsub!("tʃ",$vlpa) 

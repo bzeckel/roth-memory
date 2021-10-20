@@ -8,7 +8,7 @@ $vlpa = "\u02A7" # ʧ Voiceless postalveolar affricate, ch sound in chip
 
 def lookup(c)
    return case c  
-     when "d","t" then "1"
+     when "d","t","θ" then "1"
      when "n" then "2"
      when "m" then "3"
      # r or r colored vowel 
@@ -60,9 +60,19 @@ def ipa(w)
    return r
 end
 
+def CMUMissingOverride(vi,w)
+   return vi, w, w
+end
+
 def word_value_internal(w)
+
+  # handle ones not in CMU list
+  return CMUMissingOverride(29,w) if w.casecmp("Nobby")
+  return CMUMissingOverride(76,w) if w.casecmp("Hoggish")
+  return CMUMissingOverride(89,w) if w.casecmp("Foppy")
+
   wi = w.split.map { |x| ipa(x) }.join
-  wip = wi.gsub(/[ˈwhyjæɔɑəɛʊɪʌaeiou]/,"")
+  wip = wi.gsub(/[ˈˌwhyjæɔɑəɛʊɪʌaeiou]/,"")
   wip.gsub!("dʒ",$vpa) 
   wip.gsub!("tʃ",$vlpa) 
   vi = ipa_to_i(wip)

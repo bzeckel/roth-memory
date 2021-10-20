@@ -67,9 +67,9 @@ end
 def word_value_internal(w)
 
   # handle ones not in CMU list
-  return CMUMissingOverride(29,w) if w.casecmp("Nobby")
-  return CMUMissingOverride(76,w) if w.casecmp("Hoggish")
-  return CMUMissingOverride(89,w) if w.casecmp("Foppy")
+  return CMUMissingOverride(29,w) if w.casecmp?("Nobby")
+  return CMUMissingOverride(76,w) if w.casecmp?("Hoggish")
+  return CMUMissingOverride(89,w) if w.casecmp?("Foppy")
 
   wi = w.split.map { |x| ipa(x) }.join
   wip = wi.gsub(/[ˈˌwhyjæɔɑəɛʊɪʌaeiou]/,"")
@@ -84,19 +84,29 @@ def word_value(w)
   return vi
 end
 
-def process(w,i)
-  vi,wi,wip = word_value_internal(w)
-  mismatch = i != vi.to_i
-  puts "#{i} #{w} #{wi} #{wip} #{vi}#{arrowif(mismatch)}" if mismatch
-end
-
-def testWords
+def loadWords
   filename = "codewords.txt"
-  words = IO.readlines(filename).each do |input|
+  words = []
+  expectedCodes = []
+  IO.readlines(filename).each do |input|
     clean = input.gsub(/\#.*$/,"").strip
     next if clean == ""
     i,word = clean.split(' ',2)
-    process(word,i.to_i)
+
+    words << word
+    expectedCodes << (i.to_i)
+  end
+
+  return words,expectedCodes
+end
+
+def testWords
+  words,expectedCodes = loadWords
+  words.each_with_index do |w,i|
+     expectedCode = expectedCodes[i]
+     vi,wi,wip = word_value_internal(w)
+     mismatch = expectedCode.to_i != vi.to_i
+     puts "#{expectedCode} #{w} #{wi} #{wip} #{vi}#{arrowif(mismatch)}" if mismatch
   end
 end
 

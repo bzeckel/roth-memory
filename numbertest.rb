@@ -80,11 +80,11 @@ end
 
 
 class WordEntry
-  attr_accessor :word, :expected
+  attr_accessor :word, :number
 
-  def initialize(word, expected)
+  def initialize(word, number)
     @word = word
-    @expected = expected
+    @number = number
   end
 end
 
@@ -103,11 +103,16 @@ def loadWordEntries
 end
 
 def verify_word_entries(wordEntries)
+  # check that calculated value according to Roths system and what we have recorded in file match
   wordEntries.each do |entry|
      vc = calc_word_value(entry.word)
-     mismatch = entry.expected != vc
-     puts "#{entry.expected} #{entry.word} #{vc}#{arrowif(mismatch)}" if mismatch
+     mismatch = entry.number != vc
+     puts "#{entry.number} #{entry.word} #{vc}#{arrowif(mismatch)}" if mismatch
   end
+end
+
+def clearScreen
+  puts "\e[H\e[2J"
 end
 
 def no_repeat_random(used)
@@ -126,10 +131,6 @@ def no_repeat_random(used)
    return r
 end
 
-def clearScreen
-  puts "\e[H\e[2J"
-end
-
 def test_user(count)
   used = []
   count.times do |i|
@@ -139,11 +140,8 @@ def test_user(count)
   end
 end
 
-def meat(r)
-end
-
-def test_user_int_to_word
-   test_user(3) do |r| 
+def test_user_int_to_word(trials)
+   test_user(trials) do |r| 
      puts "enter any word for #{r}" 
      while(ans = gets.chop)
        begin
@@ -158,17 +156,25 @@ def test_user_int_to_word
 end
 
 
-def test_user_int_to_codeword(codewordEntries)
+def test_user_int_to_codeword(codewordEntries, trials)
    raise "too many codewords. expected 100 got #{codewordEntries.length}" if codewordEntries.length != 100
    
+   test_user(trials) do |r| 
+     ce = codewordEntries[r-1]
+     puts q = "enter codeword for #{r}" 
+     while(ans = gets.chop)
+       break if ans.casecmp?(ce.word)
+       puts "wrong. try again. #{q}"
+     end
+   end
 end
 
 def main
   wordEntries = loadWordEntries()
   #verify_word_entries(wordEntries)
-  puts
-  test_user_int_to_word
-  test_user_int_to_codeword(wordEntries[0..99])
+  #test_user_int_to_word(1)
+  clearScreen
+  test_user_int_to_codeword(wordEntries[0..99],5)
 end
 
 main

@@ -102,7 +102,7 @@ def loadWordEntries
   return entries
 end
 
-def testWords(wordEntries)
+def verify_word_entries(wordEntries)
   wordEntries.each do |entry|
      vc = calc_word_value(entry.word)
      mismatch = entry.expected != vc
@@ -130,11 +130,20 @@ def clearScreen
   puts "\e[H\e[2J"
 end
 
-def test_user_int_to_word
+def test_user(count)
   used = []
-  3.times do |i|
+  count.times do |i|
      clearScreen if i > 0
      r = no_repeat_random(used)
+     yield r
+  end
+end
+
+def meat(r)
+end
+
+def test_user_int_to_word
+   test_user(3) do |r| 
      puts "enter any word for #{r}" 
      while(ans = gets.chop)
        begin
@@ -145,14 +154,21 @@ def test_user_int_to_word
          puts wnfe
        end
      end
-  end
+   end
+end
+
+
+def test_user_int_to_codeword(codewordEntries)
+   raise "too many codewords. expected 100 got #{codewordEntries.length}" if codewordEntries.length != 100
+   
 end
 
 def main
   wordEntries = loadWordEntries()
-  testWords(wordEntries)
+  #verify_word_entries(wordEntries)
   puts
   test_user_int_to_word
+  test_user_int_to_codeword(wordEntries[0..99])
 end
 
 main

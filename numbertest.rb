@@ -117,7 +117,8 @@ end
 
 def test_user(count, minVal, maxVal)
   # random on range minVal to maxVal inclusive with no repeats
-  (minVal..maxVal).to_a.shuffle[0,count].each_with_index do |r,i|
+  randList = (minVal..maxVal).to_a.shuffle[0,count]
+  randList.each_with_index do |r,i|
      clearScreen if i > 0
      yield r
   end
@@ -138,27 +139,43 @@ def test_user_int_to_word(trials)
    end
 end
 
+def quiz_codeword(ce)
+  puts q = "enter codeword for #{ce.number}" 
+  while(ans = gets.chop)
+     break if ans.casecmp?(ce.word)
+     puts "wrong. try again. #{q}"
+  end
+end
 
 def test_user_int_to_codeword(codewordEntries, trials)
-   raise "too many codewords. expected 100 got #{codewordEntries.length}" if codewordEntries.length != 100
-   
    test_user(trials,0,100) do |r| 
-     ce = codewordEntries[r-1]
-     puts q = "enter codeword for #{r}" 
-     while(ans = gets.chop)
-       break if ans.casecmp?(ce.word)
-       puts "wrong. try again. #{q}"
-     end
+     quiz_codeword(codewordEntries[r-1])
    end
 end
 
+def test_user_int_to_codeword_method_one(codewordEntries)
+   firstDigit = rand(0..9) 
+   test_user(10, 0, 9) do |secondDigit|
+     num = firstDigit.to_i * 10 + secondDigit.to_i
+     next if num == 0 # special case skip 00 which doesn't exist
+     cw = codewordEntries[num-1]
+     quiz_codeword(cw)
+   end
+
+   # special case, tack on last entry on group 9
+   quiz_codeword(codewordEntries[99]) if firstDigit == 9
+end
+
+
 def main
   wordEntries = loadWordEntries()
-  verify_word_entries(wordEntries)
-  test_user_int_to_word(3)
-  clearScreen
+  #verify_word_entries(wordEntries)
+  #test_user_int_to_word(3)
   codewordOnlyEntries = wordEntries[0..99]
-  test_user_int_to_codeword(codewordOnlyEntries,3)
+  #clearScreen
+  #test_user_int_to_codeword(codewordOnlyEntries,3)
+  clearScreen
+  test_user_int_to_codeword_method_one(codewordOnlyEntries)
 end
 
 main

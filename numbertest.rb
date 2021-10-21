@@ -115,33 +115,16 @@ def clearScreen
   puts "\e[H\e[2J"
 end
 
-def no_repeat_random(used)
-   n = 100
-
-   raise "Used is full in no_repeat_random" if used.length == n
-
-   r = -1 
-   loop do 
-       r = rand(n) + 1
-       break if used.include?(r) == false
-   end 
-
-   used << r
-
-   return r
-end
-
-def test_user(count)
-  used = []
-  count.times do |i|
+def test_user(count, minVal, maxVal)
+  # random on range minVal to maxVal inclusive with no repeats
+  (minVal..maxVal).to_a.shuffle[0,count].each_with_index do |r,i|
      clearScreen if i > 0
-     r = no_repeat_random(used)
      yield r
   end
 end
 
 def test_user_int_to_word(trials)
-   test_user(trials) do |r| 
+   test_user(trials, 0, 100) do |r| 
      puts "enter any word for #{r}" 
      while(ans = gets.chop)
        begin
@@ -159,7 +142,7 @@ end
 def test_user_int_to_codeword(codewordEntries, trials)
    raise "too many codewords. expected 100 got #{codewordEntries.length}" if codewordEntries.length != 100
    
-   test_user(trials) do |r| 
+   test_user(trials,0,100) do |r| 
      ce = codewordEntries[r-1]
      puts q = "enter codeword for #{r}" 
      while(ans = gets.chop)
@@ -171,10 +154,11 @@ end
 
 def main
   wordEntries = loadWordEntries()
-  #verify_word_entries(wordEntries)
-  #test_user_int_to_word(1)
+  verify_word_entries(wordEntries)
+  test_user_int_to_word(3)
   clearScreen
-  test_user_int_to_codeword(wordEntries[0..99],5)
+  codewordOnlyEntries = wordEntries[0..99]
+  test_user_int_to_codeword(codewordOnlyEntries,3)
 end
 
 main

@@ -40,7 +40,7 @@ def ipa_to_i(wi)
        r[i] = lookup(r[i])
    end
 
-   return r
+   return r.to_i
 end
 
 def arrowif(b)
@@ -64,49 +64,49 @@ def CMUMissingOverride(vi,w)
    return vi, w, w
 end
 
-def word_value_internal(w)
+def calc_word_value(w)
 
   # handle ones not in CMU list
-  return CMUMissingOverride(29,w) if w.casecmp?("Nobby")
-  return CMUMissingOverride(76,w) if w.casecmp?("Hoggish")
-  return CMUMissingOverride(89,w) if w.casecmp?("Foppy")
+  return 29 if w.casecmp?("Nobby")
+  return 76 if w.casecmp?("Hoggish")
+  return 89 if w.casecmp?("Foppy")
 
   wi = w.split.map { |x| ipa(x) }.join
   wip = wi.gsub(/[ˈˌwhyjæɔɑəɛʊɪʌaeiou]/,"")
   wip.gsub!("dʒ",$vpa) 
   wip.gsub!("tʃ",$vlpa) 
-  vi = ipa_to_i(wip)
-  return vi, wi, wip
+  return ipa_to_i(wip)
 end
 
-def word_value(w)
-  vi, wi, wip = word_value_internal(w)
-  return vi
+
+class WordEntry
+  attr_accessor :word, :expected
+
+  def initialize(word, expected)
+    @word = word
+    @expected = expected
+  end
 end
 
-def loadWords
+def loadWordEntries
   filename = "codewords.txt"
-  words = []
-  expectedCodes = []
+  entries = []
   IO.readlines(filename).each do |input|
     clean = input.gsub(/\#.*$/,"").strip
     next if clean == ""
     i,word = clean.split(' ',2)
 
-    words << word
-    expectedCodes << (i.to_i)
+    entries << WordEntry.new(word, i.to_i)
   end
 
-  return words,expectedCodes
+  return entries
 end
 
-def testWords
-  words,expectedCodes = loadWords
-  words.each_with_index do |w,i|
-     expectedCode = expectedCodes[i]
-     vi,wi,wip = word_value_internal(w)
-     mismatch = expectedCode.to_i != vi.to_i
-     puts "#{expectedCode} #{w} #{wi} #{wip} #{vi}#{arrowif(mismatch)}" if mismatch
+def testWords(wordEntries)
+  wordEntries.each do |entry|
+     vc = calc_word_value(entry.word)
+     mismatch = entry.expected != vc
+     puts "#{entry.expected} #{entry.word} #{vc}#{arrowif(mismatch)}" if mismatch
   end
 end
 
@@ -138,7 +138,7 @@ def test_user_int_to_word
      puts "enter any word for #{r}" 
      while(ans = gets.chop)
        begin
-         wv = word_value(ans)
+         wv = calc_word_value(ans)
          break if wv.to_i == r
          puts "wrong. #{ans} has word value of #{wv} not #{r}"
        rescue WordNotFoundException => wnfe
@@ -148,6 +148,11 @@ def test_user_int_to_word
   end
 end
 
-testWords
-puts
-test_user_int_to_word
+def main
+  wordEntries = loadWordEntries()
+  testWords(wordEntries)
+  puts
+  test_user_int_to_word
+end
+
+main

@@ -162,7 +162,10 @@ def test_user_int_to_codeword_method_one(codewordEntries, firstDigit)
    end
 
    # special case, tack on last entry on group 9
-   quiz_codeword(codewordEntries[99]) if firstDigit == 9
+   if firstDigit == 9
+     clearScreen 
+     quiz_codeword(codewordEntries[99]) 
+   end
 end
 
 def lookForFirstDigit(args)

@@ -141,7 +141,7 @@ end
 
 def quiz_codeword(ce)
   puts q = "enter codeword for #{ce.number}" 
-  while(ans = gets.chop)
+  while(ans = $stdin.gets.chop)
      break if ans.casecmp?(ce.word)
      puts "wrong. try again. #{q}"
   end
@@ -153,8 +153,7 @@ def test_user_int_to_codeword(codewordEntries, trials)
    end
 end
 
-def test_user_int_to_codeword_method_one(codewordEntries)
-   firstDigit = rand(0..9) 
+def test_user_int_to_codeword_method_one(codewordEntries, firstDigit)
    test_user(10, 0, 9) do |secondDigit|
      num = firstDigit.to_i * 10 + secondDigit.to_i
      next if num == 0 # special case skip 00 which doesn't exist
@@ -166,6 +165,13 @@ def test_user_int_to_codeword_method_one(codewordEntries)
    quiz_codeword(codewordEntries[99]) if firstDigit == 9
 end
 
+def lookForFirstDigit(args)
+   if args.length > 0
+     return args[0].to_i.clamp(0,9) 
+   else
+     return rand(0..9)
+   end
+end
 
 def main
   wordEntries = loadWordEntries()
@@ -175,7 +181,7 @@ def main
   #clearScreen
   #test_user_int_to_codeword(codewordOnlyEntries,3)
   clearScreen
-  test_user_int_to_codeword_method_one(codewordOnlyEntries)
+  test_user_int_to_codeword_method_one(codewordOnlyEntries, lookForFirstDigit(ARGV))
 end
 
 main

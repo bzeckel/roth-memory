@@ -140,32 +140,42 @@ def test_user_int_to_word(trials)
 end
 
 def quiz_codeword(ce)
+  errCount = 0
   puts q = "enter codeword for #{ce.number}" 
   while(ans = $stdin.gets.chop)
      break if ans.casecmp?(ce.word)
      puts "wrong. try again. #{q}"
+     errCount += 1
   end
+
+  return errCount
 end
 
 def test_user_int_to_codeword(codewordEntries, trials)
+   errCount = 0
    test_user(trials,0,100) do |r| 
-     quiz_codeword(codewordEntries[r-1])
+     errCount += quiz_codeword(codewordEntries[r-1])
    end
+
+   return errCount
 end
 
 def test_user_int_to_codeword_method_one(codewordEntries, firstDigit)
+   errCount = 0 
    test_user(10, 0, 9) do |secondDigit|
      num = firstDigit.to_i * 10 + secondDigit.to_i
      next if num == 0 # special case skip 00 which doesn't exist
      cw = codewordEntries[num-1]
-     quiz_codeword(cw)
+     errCount += quiz_codeword(cw)
    end
 
    # special case, tack on last entry on group 9
    if firstDigit == 9
      clearScreen 
-     quiz_codeword(codewordEntries[99]) 
+     errCount += quiz_codeword(codewordEntries[99]) 
    end
+
+   return errCount
 end
 
 def lookForFirstDigit(args)
@@ -176,15 +186,26 @@ def lookForFirstDigit(args)
    end
 end
 
+def put_err(errCount)
+  puts "detected #{errCount} errors"
+  puts "press enter to continue: "
+  $stdin.gets
+
+  return errCount
+end
+
 def main
   wordEntries = loadWordEntries()
   #verify_word_entries(wordEntries)
   #test_user_int_to_word(3)
   codewordOnlyEntries = wordEntries[0..99]
   #clearScreen
-  #test_user_int_to_codeword(codewordOnlyEntries,3)
+  #put_err(test_user_int_to_codeword(codewordOnlyEntries,3))
   clearScreen
-  test_user_int_to_codeword_method_one(codewordOnlyEntries, lookForFirstDigit(ARGV))
+  firstDigit = lookForFirstDigit(ARGV)
+  while(put_err(test_user_int_to_codeword_method_one(codewordOnlyEntries, firstDigit )) != 0) do 
+    clearScreen
+  end
 end
 
 main

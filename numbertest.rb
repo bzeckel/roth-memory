@@ -194,6 +194,17 @@ def put_err(errCount)
   return errCount
 end
 
+def calc_word_value_of_stdin
+
+  $stdin.readlines.each do |w|
+    begin
+      w.chop!
+      puts "#{w} #{calc_word_value(w)}"
+    rescue WordNotFoundException => wnfe
+    end
+  end
+end
+
 def main
   wordEntries = loadWordEntries()
   #verify_word_entries(wordEntries)
@@ -206,6 +217,7 @@ def main
   while(put_err(test_user_int_to_codeword_method_one(codewordOnlyEntries, firstDigit )) != 0) do 
     clearScreen
   end
+  #calc_word_value_of_stdin
 end
 
 main

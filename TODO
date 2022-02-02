@@ -1,18 +1,5 @@
 
-write a simple application to read in code word file and quiz.
+store face md5sum in filename, store names in md5sum->random name file, then run quizes on that so every time each "face" gets the same name each time
 
-ideas:
+test just recognizing previously seen face skill (ie, show 5 faces, then quiz among those 5 + 95 random faces Y/N seen)
 
-up to 5 before random word (so if third one selected, it should just be two)
-up to 5 after random word
-
-one at a time until mistake
-
-etc
-
-
-use https://thispersondoesnotexist.com/ to create tool for testing face memory
-alternative: https://github.com/NVlabs/ffhq-dataset
-
-look into similar of https://github.com/hilarysk/string_to_ipa to test word<->number system
-handling hard g vs soft g , etc
